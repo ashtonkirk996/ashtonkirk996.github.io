@@ -1,3 +1,5 @@
+
+
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
@@ -18,20 +20,33 @@ header {
     background: #333;
     color: #fff;
     padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header .logo img {
-    height: 50px;
+/* Logo Styling */
+.logo-img {
+    width: 100px; /* Default size for mobile */
+    height: auto; /* Maintain aspect ratio */
 }
 
+/* Larger size for tablets and desktops */
+@media (min-width: 768px) {
+    .logo-img {
+        width: 150px; /* Larger size for tablets and desktops */
+    }
+}
+
+/* Navigation */
 nav ul {
     list-style: none;
     padding: 0;
-    text-align: center;
+    margin: 0;
+    display: flex;
 }
 
 nav ul li {
-    display: inline;
     margin: 0 15px;
 }
 
@@ -40,6 +55,8 @@ nav ul li a {
     text-decoration: none;
     font-weight: bold;
 }
+
+/* Rest of your CSS */
 
 /* Hero Section */
 .hero {
