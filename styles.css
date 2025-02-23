@@ -1,4 +1,10 @@
 /* General Styles */
+html, body {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    width: 100%; /* Ensure body takes full width */
+    max-width: 100%; /* Prevent content from exceeding viewport width */
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -374,7 +380,7 @@ footer .footer-bottom {
     }
 
     .hero {
-        padding: 100px 0; /* Reduce padding for mobile */
+        padding: 100px 10px; /* Reduce padding for mobile */
     }
 
     .hero h1 {
