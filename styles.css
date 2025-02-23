@@ -1,41 +1,39 @@
-
-
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; /* Ensure Arial is the default font */
     margin: 0;
     padding: 0;
     line-height: 1.6;
     color: #333;
+    background-color: #f9f9f9;
 }
 
-.container {
+/* Header */
+header {
+    background: #414652;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Header */
-header {
-    background: #333;
-    color: #fff;
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 /* Logo Styling */
-.logo-img {
-    width: 100px; /* Default size for mobile */
-    height: auto; /* Maintain aspect ratio */
-}
 
-/* Larger size for tablets and desktops */
-@media (min-width: 768px) {
-    .logo-img {
-        width: 150px; /* Larger size for tablets and desktops */
-    }
+.logo {
+    display: flex;
+    align-items: center; /* Vertically center logo */
+    height: 100%; /* Ensure logo takes full height of header */
+}
+.logo-img {
+    width: auto;
+    height: 95px;
 }
 
 /* Navigation */
@@ -44,57 +42,121 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-}
-
-nav ul li {
-    margin: 0 15px;
+    gap: 15px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
 }
 
-/* Rest of your CSS */
-
-/* Hero Section */
-.hero {
-    background: url('images/hero-bg.jpg') no-repeat center center/cover;
-    color: #fff;
-    text-align: center;
-    padding: 100px 0;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.hero .btn {
+nav ul li a:hover {
     background: #77aaff;
     color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
     border-radius: 5px;
 }
 
+/* Header Buttons */
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn.large-btn {
+    background: #77aaff;
+    color: #fff;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn.large-btn:hover {
+    background: #5599ff;
+}
+
+/* Top Bar */
+.top-bar {
+    background: #444;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.top-bar .container {
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.top-bar .contact-info {
+    display: flex;
+    gap: 20px; /* Space between phone and email */
+}
+
+.top-bar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.top-bar a:hover {
+    color: #77aaff;
+}
+
+/* Main Content */
+main {
+    padding: 20px 0; /* Add padding to separate content from header */
+}
+
+/* Hero Section */
+.hero {
+    background: url('images/water_blasting_cropped.JPG') no-repeat center center/cover;
+
+    color: #fff;
+    text-align: center;
+    padding: 200px 0;
+
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+  
+ 
+}
+
+
+
 /* About Section */
 .about {
-    padding: 50px 0;
+    padding: 60px 0;
     text-align: center;
+    background: #fff;
 }
 
 .about img {
     max-width: 100%;
     border-radius: 10px;
     margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Services Section */
 .services {
     background: #f4f4f4;
-    padding: 50px 0;
+    padding: 60px 0;
     text-align: center;
 }
 
@@ -102,11 +164,21 @@ nav ul li a {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
 .service-item {
     width: 30%;
     margin-bottom: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
 }
 
 .service-item img {
@@ -116,27 +188,35 @@ nav ul li a {
 
 /* Portfolio Section */
 .portfolio {
-    padding: 50px 0;
+    padding: 60px 0;
     text-align: center;
+    background: #fff;
 }
 
 .gallery {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
 .gallery img {
     width: 30%;
     margin-bottom: 20px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
 }
 
 /* Contact Section */
 .contact {
     background: #333;
     color: #fff;
-    padding: 50px 0;
+    padding: 60px 0;
     text-align: center;
 }
 
@@ -144,23 +224,32 @@ nav ul li a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .contact input, .contact textarea {
-    width: 80%;
-    padding: 10px;
-    margin-bottom: 10px;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
     border-radius: 5px;
     border: none;
+    font-size: 1rem;
 }
 
 .contact .btn {
     background: #77aaff;
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+}
+
+.contact .btn:hover {
+    background: #5599ff;
 }
 
 /* Footer */
@@ -175,6 +264,7 @@ footer .footer-content {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
 footer .footer-section {
@@ -185,6 +275,11 @@ footer .footer-section {
 footer .footer-section a {
     color: #77aaff;
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer .footer-section a:hover {
+    color: #5599ff;
 }
 
 footer .footer-bottom {
