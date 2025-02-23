@@ -16,7 +16,8 @@ body {
 
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: none; /* Remove max-width constraint */
+    width: 100%; /* Ensure full width */
     margin: 0 auto;
 }
 
@@ -159,20 +160,20 @@ main {
 }
 
 /* Services Section */
-.services, .commercial {
+.services {
     background: #f4f4f4;
     padding: 60px 0;
     text-align: center;
 }
 
-.service-list, .commercial-list {
+.service-list {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
 }
 
-.service-item, .commercial-item {
+.service-item {
     width: 30%;
     margin-bottom: 20px;
     background: #fff;
@@ -182,13 +183,119 @@ main {
     transition: transform 0.3s ease;
 }
 
-.service-item:hover, .commercial-item:hover {
+.service-item:hover{
     transform: translateY(-10px);
 }
 
-.service-item img, .commercial-item img {
+.service-item img{
     max-width: 100%;
     border-radius: 10px;
+}
+
+/* Commercial Section */
+.commercial {
+    padding: 60px 0;
+    text-align: center;
+    background: #f4f4f4;
+}
+
+.commercial h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.commercial p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+.commercial-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Two columns */
+    gap: 20px; /* Space between items */
+    justify-content: flex-end; /* Align items to the right */
+    width: 100%; /* Ensure the container takes full width */
+    max-width: none; /* Remove max-width constraint */
+
+}
+
+.commercial-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.commercial-item:hover {
+    transform: translateY(-10px); /* Add hover effect */
+}
+
+.commercial-item img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.commercial-item h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .commercial-list {
+        grid-template-columns: 1fr; /* Single column for mobile */
+    }
+}
+
+.centered-list {
+    display: flex;
+    justify-content: center; /* Center the list horizontally */
+    width: 100%; /* Ensure the container takes full width */
+}
+
+.centered-list ul {
+    list-style-type: disc; /* Default bullet style */
+    padding-left: 20px; /* Add space for bullets */
+    text-align: left; /* Align text to the left */
+    max-width: 800px; /* Limit the width of the list for better readability */
+    margin: 0 auto; /* Center the list within the container */
+}
+
+.contact-cta {
+    text-align: center; /* Center the content */
+    margin-top: 40px; /* Add space above the section */
+    padding: 20px;
+    background-color: #f4f4f4; /* Light background color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.contact-cta h2 {
+    font-size: 2rem; /* Larger heading */
+    margin-bottom: 15px; /* Space below the heading */
+}
+
+.contact-cta p {
+    font-size: 1.2rem; /* Larger text */
+    margin-bottom: 20px; /* Space below the paragraph */
+}
+
+.contact-cta a {
+    color: #77aaff; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.contact-cta a:hover {
+    color: #5599ff; /* Change color on hover */
+}
+
+.contact-cta .btn.large-btn {
+    margin-top: 10px; /* Space above the button */
 }
 
 /* Portfolio Section */
@@ -361,6 +468,14 @@ footer .footer-bottom {
 .water-blasting p {
     font-size: 1.2rem;
     margin-bottom: 40px;
+}
+
+a {
+    text-decoration: none; /* No underlines on the link */
+    z-index: 10; /* Places the link above everything else in the div */
+    color: #333;
+  
+    filter: alpha(opacity=1); /* Fix to make div clickable in IE */
 }
 
 /* Responsive Design */
