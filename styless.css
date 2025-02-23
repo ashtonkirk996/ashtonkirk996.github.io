@@ -1,17 +1,11 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; /* Ensure Arial is the default font */
     margin: 0;
     padding: 0;
     line-height: 1.6;
     color: #333;
     background-color: #f9f9f9;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 /* Header */
@@ -31,12 +25,12 @@ header {
 }
 
 /* Logo Styling */
+
 .logo {
     display: flex;
-    align-items: center;
-    height: 100%;
+    align-items: center; /* Vertically center logo */
+    height: 100%; /* Ensure logo takes full height of header */
 }
-
 .logo-img {
     width: auto;
     height: 95px;
@@ -95,7 +89,7 @@ nav ul li a:hover {
 
 .top-bar .container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; /* Align content to the right */
     align-items: center;
     width: 90%;
     max-width: 1200px;
@@ -104,7 +98,7 @@ nav ul li a:hover {
 
 .top-bar .contact-info {
     display: flex;
-    gap: 20px;
+    gap: 20px; /* Space between phone and email */
 }
 
 .top-bar a {
@@ -120,15 +114,17 @@ nav ul li a:hover {
 
 /* Main Content */
 main {
-    padding: 20px 0;
+    padding: 20px 0; /* Add padding to separate content from header */
 }
 
 /* Hero Section */
 .hero {
     background: url('images/water_blasting_cropped.JPG') no-repeat center center/cover;
+
     color: #fff;
     text-align: center;
     padding: 200px 0;
+
 }
 
 .hero h1 {
@@ -136,7 +132,12 @@ main {
     margin-top: 10px;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+  
+ 
 }
+
+
 
 /* About Section */
 .about {
@@ -153,37 +154,88 @@ main {
 }
 
 /* Services Section */
-.services, .commercial {
+.services {
     background: #f4f4f4;
     padding: 60px 0;
     text-align: center;
+
 }
 
-.service-list, .commercial-list {
+
+.service-list {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
 }
 
-.service-item, .commercial-item {
+.service-item {
     width: 30%;
     margin-bottom: 20px;
     background: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    
+   
 }
 
-.service-item:hover, .commercial-item:hover {
+
+.service-item:hover {
     transform: translateY(-10px);
 }
 
-.service-item img, .commercial-item img {
+.service-item img {
     max-width: 100%;
     border-radius: 10px;
 }
+
+/* Services Section */
+.commercial {
+    background: #f4f4f4;
+    padding: 60px 0;
+    text-align: center;
+
+}
+
+
+
+.commercial-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.commercial-item {
+    width: 30%;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+   
+}
+
+
+.commercial-item:hover {
+    transform: translateY(-10px);
+}
+
+.commercial-item img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: none; /* No underlines on the link */
+    z-index: 10; /* Places the link above everything else in the div */
+    color: #333;
+  
+    filter: alpha(opacity=1); /* Fix to make div clickable in IE */
+}
+  
 
 /* Portfolio Section */
 .portfolio {
@@ -342,7 +394,7 @@ footer .footer-bottom {
 
 /* Water Blasting Section */
 .water-blasting {
-    padding: 60px 20px;
+    padding: 60px 20px; /* Add padding */
     text-align: center;
     background: #f9f9f9;
 }
@@ -357,44 +409,20 @@ footer .footer-bottom {
     margin-bottom: 40px;
 }
 
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        align-items: flex-start;
+    .water-blasting {
+        padding: 40px 10px; /* Reduce padding for smaller screens */
     }
 
-    .logo-img {
-        height: 80px; /* Smaller logo for mobile */
+    .service-details {
+        flex-direction: column; /* Stack service items vertically on small screens */
     }
 
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .hero {
-        padding: 100px 0; /* Reduce padding for mobile */
-    }
-
-    .hero h1 {
-        font-size: 2rem; /* Smaller heading for mobile */
-    }
-
-    .service-list, .commercial-list, .pricing-table, .gallery {
-        flex-direction: column;
-    }
-
-    .service-item, .commercial-item, .pricing-item, .gallery img {
-        width: 100%; /* Full width for mobile */
-        margin-bottom: 20px;
-    }
-
-    .pricing, .water-blasting {
-        padding: 40px 10px; /* Reduce padding for mobile */
-    }
-
-    .contact form {
-        width: 90%; /* Make form wider on mobile */
+    .service-item {
+        width: 100%; /* Full width for small screens */
+        margin-bottom: 20px; /* Add space between stacked items */
     }
 }
