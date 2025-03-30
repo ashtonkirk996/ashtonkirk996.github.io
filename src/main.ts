@@ -53,4 +53,4 @@ mainContent.innerHTML = `
 `;
 app.appendChild(mainContent);
 
-//setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
+setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
