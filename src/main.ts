@@ -37,7 +37,35 @@ window.addEventListener("scroll", () => {
     header.classList.remove("scrolled", "hidden");
   }
 });
+function initScrollAnimation() {
+  const scrollElements = document.querySelectorAll<HTMLElement>('.scroll-animate');
+  
+  const elementInView = (el: HTMLElement, offset = 0): boolean => {
+    const elementTop = el.getBoundingClientRect().top;
+    return elementTop <= (window.innerHeight || document.documentElement.clientHeight) - offset;
+  };
+  
+  const handleScrollAnimation = () => {
+    scrollElements.forEach((el, index) => {
+      if (elementInView(el, 100)) {
+        // Properly type cast and add delay
+        const element = el as HTMLElement;
+        element.style.transitionDelay = `${index * 0.1}s`;
+        element.classList.add('visible');
+      }
+    });
+  };
 
+  // Initialize with debounce
+  let isScrolling: ReturnType<typeof setTimeout>;
+  window.addEventListener('scroll', () => {
+    clearTimeout(isScrolling);
+    isScrolling = setTimeout(handleScrollAnimation, 50);
+  });
+
+  // Initial check
+  handleScrollAnimation();
+}
 // Create main content area
 const mainContent = document.createElement("main");
 app.appendChild(mainContent);
@@ -47,3 +75,5 @@ setupMenu(header, mainContent);
 
 // Render home page by default
 renderHomePage(mainContent);
+
+document.addEventListener('DOMContentLoaded', initScrollAnimation);

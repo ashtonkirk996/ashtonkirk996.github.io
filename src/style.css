@@ -92,13 +92,44 @@ nav {
   white-space: nowrap; /* Added */
 }
 
+/* Menu Item Styles */
+.menu-list li a {
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+/* Star Styles */
 .menu-star {
-  flex-shrink: 0; /* Added */
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1px;
+  margin-left: 8px;
   transition: all 0.3s ease;
 }
+
+.menu-star path {
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1;
+  transition: all 0.3s ease;
+}
+
+
+/* Hover Effects - Works when hovering either text or star */
+.menu-list li a:hover .menu-star path,
+.menu-star:hover path {
+  fill: var(--color-primary);
+  stroke: var(--color-primary);
+  transform: scale(1.1);
+}
+
+
+
+/* If you want the entire text+star to glow */
+.menu-list li a:hover .menu-item-text {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
 
 .menu-list a {
   text-decoration: none;
@@ -261,7 +292,19 @@ header.hidden {
 .psychic-reading h2 {
   text-align: center;
   margin-bottom: 2rem;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  color: #3a2e26;
+  position: relative;
 
+}
+.psychic-reading h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #e0c4a0, #d4a373);
+  margin: 1rem auto;
 }
 
 /* Responsive adjustments */
@@ -392,5 +435,168 @@ section h2 {
   text-align: center;
   margin-bottom: 2rem;
   color: var(--primary-color);
+}
+
+/* Pricing Section */
+.pricing-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f8f5f2 0%, #fff9f5 100%);
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #3a2e26;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #e0c4a0, #d4a373);
+  margin: 1rem auto;
+}
+
+.pricing-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Pricing Cards */
+.pricing-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 215, 180, 0.3);
+}
+
+.pricing-card.featured {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #fff9f0 0%, #ffffff 100%);
+  border: 1px solid #e0c4a0;
+}
+
+.card-badge {
+  position: absolute;
+  top: 15px;
+  right: -30px;
+  background: #d4a373;
+  color: white;
+  padding: 5px 30px;
+  transform: rotate(45deg);
+  font-size: 0.8rem;
+  font-weight: bold;
+  width: 120px;
+  text-align: center;
+}
+
+.card-header {
+  margin-bottom: 1.5rem;
+}
+
+.card-header h3 {
+  font-size: 1.5rem;
+  color: #3a2e26;
+  margin-bottom: 0.5rem;
+}
+
+.crystal-icon {
+  font-size: 2rem;
+  margin: 1rem 0;
+  opacity: 0.8;
+}
+
+.card-price {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #5a4a3a;
+  margin: 1.5rem 0;
+}
+
+.card-price span {
+  font-size: 1rem;
+  color: #8a6d46;
+  font-weight: normal;
+}
+
+.card-features {
+  text-align: left;
+  margin: 2rem 0;
+  padding: 0 1rem;
+}
+
+.card-features li {
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.card-features li::before {
+  content: "•";
+  color: #d4a373;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: -3px;
+}
+
+.card-button {
+  background: linear-gradient(135deg, #d4a373 0%, #b78a5a 100%);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 80%;
+  margin-top: 1rem;
+}
+
+.card-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(183, 138, 90, 0.3);
+}
+
+/* Animations */
+.pricing-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pricing-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .pricing-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pricing-card.featured {
+    transform: scale(1);
+  }
 }
 

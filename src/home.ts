@@ -21,5 +21,73 @@ export function renderHomePage(container: HTMLElement) {
       </div>
     </div>
   </section>
+   <section class="pricing-section">
+      <h2 class="section-title">PSYCHIC SERVICES</h2>
+      <div class="pricing-grid">
+        <!-- Pricing Card 1 -->
+        <div class="pricing-card scroll-animate">
+          <div class="card-header">
+            <h3>10 Minute Reading</h3>
+            <div class="crystal-icon">💎</div>
+          </div>
+          <div class="card-price">$45.80<span>/session</span></div>
+          <ul class="card-features">
+          </ul>
+          <button class="card-button">Book Now</button>
+        </div>
+
+        <!-- Pricing Card 2 (Featured) -->
+        <div class="pricing-card featured scroll-animate">
+          <div class="card-badge">Most Popular</div>
+          <div class="card-header">
+            <h3>20 Minute Reading</h3>
+            <div class="crystal-icon">🔮</div>
+          </div>
+          <div class="card-price">$91.60<span>/session</span></div>
+          <ul class="card-features">
+            
+          </ul>
+          <button class="card-button">Book Now</button>
+        </div>
+
+        <!-- Pricing Card 3 -->
+        <div class="pricing-card scroll-animate">
+          <div class="card-header">
+            <h3>30 Minute Reading</h3>
+            <div class="crystal-icon">✨</div>
+          </div>
+          <div class="card-price">$137.40<span>/session</span></div>
+          <ul class="card-features">
+          </ul>
+          <button class="card-button">Book Now</button>
+        </div>
+
+
+        <!-- Pricing Card 4 -->
+        <div class="pricing-card scroll-animate">
+          <div class="card-header">
+            <h3>40 Minute Reading</h3>
+            <div class="crystal-icon">🃏 </div>
+          </div>
+          <div class="card-price">$183.20<span>/session</span></div>
+          <ul class="card-features">
+          </ul>
+          <button class="card-button">Book Now</button>
+        </div>
+
+
+        <!-- Pricing Card 5 -->
+        <div class="pricing-card scroll-animate">
+          <div class="card-header">
+            <h3>60 Minute Reading</h3>
+            <div class="crystal-icon">🌙</div>
+          </div>
+          <div class="card-price">$275.00<span>/session</span></div>
+          <ul class="card-features">
+          </ul>
+          <button class="card-button">Book Now</button>
+        </div>
+      </div>
+    </section>
     `;
   }
