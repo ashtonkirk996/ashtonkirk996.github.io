@@ -1,24 +1,51 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+// main.ts
+import './style.css';
+import { setupMenu } from './menu';
+import { setupCounter } from './counter';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
+// Initialize app structure
+const app = document.querySelector<HTMLDivElement>('#app')!;
+
+// Create header
+const header = document.createElement('header');
+header.innerHTML = `
+  <div class="logo">
+    <span>DEBORAH’S <br> PSYCHIC READINGS</span>
   </div>
-`
+`;
+app.appendChild(header);
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+// Add scroll handler for header effect
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  if (currentScroll > 50) {
+    header.classList.add('scrolled');
+    if (currentScroll > lastScroll) {
+      header.classList.add('hidden');
+    } else {
+      header.classList.remove('hidden');
+    }
+    lastScroll = currentScroll;
+  } else {
+    header.classList.remove('scrolled', 'hidden');
+  }
+});
+
+// Setup menu
+setupMenu(header);
+
+// Add content
+const mainContent = document.createElement('main');
+mainContent.innerHTML = `
+  <section class="hero">
+    <h1>PSYCHIC READINGS, <br> ASTOUNDINGLY <br> <span class="highlight">RELATABLE</span></h1>
+    <p>Are you at crossroads and want to know what each path holds so you can make a wise decision that’s in alignment with your goals?</p>
+  </section>
+  <div class="card">
+    <button id="counter" type="button"></button>
+  </div>
+`;
+app.appendChild(mainContent);
+
+setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);

@@ -14,5 +14,9 @@
     "tailwindcss": "^4.0.17",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "gsap": "^3.12.7",
+    "typed.js": "^2.1.0"
   }
 }
