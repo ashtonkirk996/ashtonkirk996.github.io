@@ -6,6 +6,14 @@ import { setupCounter } from './counter';
 // Initialize app structure
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
+// Create background container
+const backgroundContainer = document.createElement('div');
+backgroundContainer.innerHTML = `
+  <div class="background-circle circle1"></div>
+  <div class="background-circle circle2"></div>
+`;
+document.body.prepend(backgroundContainer);
+
 // Create header
 const header = document.createElement('header');
 header.innerHTML = `
@@ -42,10 +50,7 @@ mainContent.innerHTML = `
     <h1>PSYCHIC READINGS, <br> ASTOUNDINGLY <br> <span class="highlight">RELATABLE</span></h1>
     <p>Are you at crossroads and want to know what each path holds so you can make a wise decision that’s in alignment with your goals?</p>
   </section>
-  <div class="card">
-    <button id="counter" type="button"></button>
-  </div>
 `;
 app.appendChild(mainContent);
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
+//setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);

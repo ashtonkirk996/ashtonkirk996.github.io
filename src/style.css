@@ -9,14 +9,14 @@
 :root {
   --font-serilo: "Serilo", serif;
   --color-primary: #8b5a2b;
-  --color-accent: #ff6b6b;
+  --color-accent: #B08450;
   --color-bg: #fff5e6;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: var(--font-sero);
+  font-family: var(--font-serilo);
   background: linear-gradient(-45deg, #fff5e6, #ffe4cc, #ffd8b3, #e6f0ff);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
@@ -35,27 +35,37 @@ body {
   }
 }
 
-/* Fixed Header */
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: flex-start; /* Changed from space-between */
   padding: 1rem 2rem;
   z-index: 1000;
   transition: all 0.3s ease;
   background: transparent;
-  box-sizing: border-box; /* Added */
+  box-sizing: border-box;
 }
 
-/* Logo Section */
+/* Reduce gap between logo and nav */
 .logo {
-  flex: 0 1 auto; /* Added */
-  min-width: 200px; /* Added */
+  margin-right: 1rem; /* Adjust this value as needed */
 }
+
+/* Ensure nav follows the logo closely */
+nav {
+  margin-left: 100px;
+}
+.logo-img {
+  max-height: 40px; /* Adjust this value based on your original size */
+  width: auto;
+  fill: #333;
+}
+
+
 
 .logo span {
   font-size: 1.2rem;
@@ -95,11 +105,15 @@ header {
   color: var(--color-primary);
   font-weight: 500;
   text-transform: uppercase;
-  font-size: 0.75rem; /* Reduced from 0.8rem */
+  font-size: 1 rem; /* Reduced from 0.8rem */
   letter-spacing: 0.5px; /* Reduced from 1px */
   padding: 0.3rem; /* Reduced from 0.5rem */
   transition: color 0.3s ease;
 }
+.menu-list li {
+  margin-right: 1.5rem; /* Adjust as needed */
+}
+
 
 /* Scroll Effects */
 header.scrolled {
@@ -119,7 +133,7 @@ header.hidden {
   }
 
   .menu-list {
-    gap: 0.6rem;
+    gap: 1.0rem;
   }
 
   .menu-list a {
@@ -140,16 +154,34 @@ header.hidden {
 
 /* Hero Section */
 .hero {
-  text-align: center;
+  text-align: left;
   padding: 4rem 2rem;
+  font-family: "Serilo", serif;
 }
 
 .hero h1 {
-  font-size: 3rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  color: var(--color-primary);
+  font-size: 7rem;
+  line-height: 1.1; /* Reduce height */
+  font-weight: 10;
+  letter-spacing: 1px;
+  margin-bottom: 0.3rem; /* Reduce space below h1 */
+  color: #333; /* Set text color to #333 */
+  font-family: 'Roboto', serif;
 }
+
+.hero p {
+  font-family: "Arial", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.4; /* Slightly tighter line height */
+  color: #333;
+  margin-top: 0; /* Ensure no extra space from p */
+}
+.logo-img path {
+  fill: black; /* Change all white parts to black */
+}
+
+  
+
 
 .highlight {
   color: var(--color-accent);
