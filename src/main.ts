@@ -37,6 +37,15 @@ window.addEventListener("scroll", () => {
     header.classList.remove("scrolled", "hidden");
   }
 });
+
+// ANIMATION FUNCTIONS (ONLY ADDITION)
+function resetAnimations() {
+  document.querySelectorAll('.scroll-animate').forEach(el => {
+    el.classList.remove('visible');
+  });
+  initScrollAnimation();
+}
+
 function initScrollAnimation() {
   const scrollElements = document.querySelectorAll<HTMLElement>('.scroll-animate');
   
@@ -48,10 +57,8 @@ function initScrollAnimation() {
   const handleScrollAnimation = () => {
     scrollElements.forEach((el, index) => {
       if (elementInView(el, 100)) {
-        // Properly type cast and add delay
-        const element = el as HTMLElement;
-        element.style.transitionDelay = `${index * 0.1}s`;
-        element.classList.add('visible');
+        el.style.transitionDelay = `${index * 0.1}s`;
+        el.classList.add('visible');
       }
     });
   };
@@ -66,6 +73,7 @@ function initScrollAnimation() {
   // Initial check
   handleScrollAnimation();
 }
+
 // Create main content area
 const mainContent = document.createElement("main");
 app.appendChild(mainContent);
@@ -76,4 +84,41 @@ setupMenu(header, mainContent);
 // Render home page by default
 renderHomePage(mainContent);
 
-document.addEventListener('DOMContentLoaded', initScrollAnimation);
+// SIMPLE SOLUTION: Watch for content changes and re-run animations
+const observer = new MutationObserver(() => {
+  if (document.querySelector('.pricing-section')) {
+    initScrollAnimation();
+  }
+});
+
+function setupBookNowButtons() {
+  document.addEventListener('click', (e) => {
+    const button = (e.target as HTMLElement).closest('.card-button');
+    if (button) {
+      const bookingNotice = document.querySelector('.booking-notice');
+      if (bookingNotice) {
+        bookingNotice.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'center'
+        });
+        
+        // Optional: Add a visual pulse effect when scrolling to it
+        bookingNotice.classList.add('highlight-pulse');
+        setTimeout(() => {
+          bookingNotice.classList.remove('highlight-pulse');
+        }, 2000);
+      }
+    }
+  });
+}
+
+
+observer.observe(mainContent, {
+  childList: true,
+  subtree: true
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  initScrollAnimation();
+  setupBookNowButtons();
+});

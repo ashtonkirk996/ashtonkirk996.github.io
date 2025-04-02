@@ -88,6 +88,16 @@ export function renderHomePage(container: HTMLElement) {
           <button class="card-button">Book Now</button>
         </div>
       </div>
+
+       <div class="booking-notice scroll-animate">
+    <div class="booking-content">
+      <div class="booking-icon">📱</div>
+      <div class="booking-text">
+        <h3>Ready for Your Reading?</h3>
+        <p>Text me at <a href="sms:+64221998724" class="phone-link">(022) 1998724</a> to book your session or ask any questions.</p>
+      </div>
+    </div>
+  </div>
     </section>
     `;
   }

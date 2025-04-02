@@ -607,3 +607,117 @@ section h2 {
   }
 }
 
+/* Enhanced Booking Notice Styles */
+.booking-notice {
+  background: linear-gradient(135deg, #f8f5f2 0%, #fff9f5 100%);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  margin: 4rem auto 0;
+  max-width: 800px;
+  border: 1px solid rgba(216, 179, 139, 0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.booking-notice.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.booking-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.booking-notice h3 {
+  font-size: 2.2rem;
+  color: #3a2e26;
+  margin-bottom: 1rem;
+  font-family: var(--font-serilo);
+  letter-spacing: 0.5px;
+}
+
+.booking-text {
+  font-size: 1.3rem;
+  color: #6b5a48;
+  margin-bottom: 0.5rem;
+}
+
+.phone-number {
+  display: inline-block;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+  margin: 1rem 0;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  background: rgba(139, 90, 43, 0.1);
+  transition: all 0.3s ease;
+}
+
+.phone-number:hover {
+  background: rgba(139, 90, 43, 0.2);
+  transform: scale(1.05);
+}
+
+.booking-subtext {
+  font-size: 1.2rem;
+  color: #6b5a48;
+  margin-bottom: 1.5rem;
+}
+
+.booking-hours {
+  font-size: 1rem;
+  color: #8a7862;
+  font-style: italic;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed #d4a373;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .booking-notice {
+    padding: 2.5rem 1.5rem;
+    margin-top: 3rem;
+  }
+  
+  .booking-notice h3 {
+    font-size: 1.8rem;
+  }
+  
+  .phone-number {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .booking-text, .booking-subtext {
+    font-size: 1.1rem;
+  }
+}
+.highlight-pulse {
+  animation: pulse-highlight 1.5s ease-in-out;
+}
+
+@keyframes pulse-highlight {
+  0% { box-shadow: 0 0 0 0 rgba(176, 132, 80, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(176, 132, 80, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(176, 132, 80, 0); }
+}
