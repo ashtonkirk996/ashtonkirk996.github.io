@@ -38,13 +38,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// ANIMATION FUNCTIONS (ONLY ADDITION)
-function resetAnimations() {
-  document.querySelectorAll('.scroll-animate').forEach(el => {
-    el.classList.remove('visible');
-  });
-  initScrollAnimation();
-}
+
 
 function initScrollAnimation() {
   const scrollElements = document.querySelectorAll<HTMLElement>('.scroll-animate');
