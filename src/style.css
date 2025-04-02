@@ -470,6 +470,7 @@ section h2 {
 }
 
 /* Pricing Cards */
+/* Replace these rules */
 .pricing-card {
   background: white;
   border-radius: 16px;
@@ -477,11 +478,17 @@ section h2 {
   width: 100%;
   max-width: 350px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 215, 180, 0.3);
+  opacity: 1; 
+  transform: none;
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+
+
+/* Remove the .visible class related rules */
 
 .pricing-card.featured {
   transform: scale(1.05);
