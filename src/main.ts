@@ -13,17 +13,7 @@ function updateCanonicalUrl(path: string) {
   canonicalLink.href = `${baseUrl}${path}`;
 }
 
-function handleNavigation(path: string) {
-  // Update URL
-  window.history.pushState({}, '', path);
-  
-  // Update SEO elements
-  updateCanonicalUrl(path);
-  document.title = `Deborah's Psychic Readings${path === '/' ? '' : ` | ${path.slice(1)}`}`;
-  
-  // Reset scroll
-  window.scrollTo(0, 0);
-}
+
 
 
 // Create background container
