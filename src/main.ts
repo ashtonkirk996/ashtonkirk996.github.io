@@ -4,6 +4,28 @@ import { renderHomePage } from "./home";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
+// Replace the existing handleNavigation and updateCanonicalUrl with:
+function updateCanonicalUrl(path: string) {
+  const canonicalLink = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  if (!canonicalLink) return;
+
+  const baseUrl = 'https://deborahspsychicreadings.co.nz';
+  canonicalLink.href = `${baseUrl}${path}`;
+}
+
+function handleNavigation(path: string) {
+  // Update URL
+  window.history.pushState({}, '', path);
+  
+  // Update SEO elements
+  updateCanonicalUrl(path);
+  document.title = `Deborah's Psychic Readings${path === '/' ? '' : ` | ${path.slice(1)}`}`;
+  
+  // Reset scroll
+  window.scrollTo(0, 0);
+}
+
+
 // Create background container
 const backgroundContainer = document.createElement("div");
 backgroundContainer.innerHTML = `
@@ -107,12 +129,24 @@ function setupBookNowButtons() {
 }
 
 
+
+
 observer.observe(mainContent, {
   childList: true,
   subtree: true
 });
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimation();
   setupBookNowButtons();
+
 });
+window.addEventListener('routechange', (e) => {
+  // Update page title, canonical URL, etc.
+  const path = (e as CustomEvent).detail.path;
+  document.title = `Deborah's Psychic Readings - ${path.slice(1) || 'Home'}`;
+});
+
+

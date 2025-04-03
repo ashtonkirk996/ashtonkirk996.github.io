@@ -1,4 +1,3 @@
-// src/menu.ts
 import { renderHomePage } from "./home";
 import { renderReadingsPage } from "./readings";
 import { renderAboutPage } from "./about";
@@ -8,6 +7,7 @@ import { renderTermsPage } from "./terms";
 
 type MenuItem = {
   title: string;
+  path: string; // Add path for each menu item
   action: (container: HTMLElement) => void;
 };
 
@@ -22,29 +22,27 @@ export function setupMenu(header: HTMLElement, mainContent: HTMLElement) {
     logoDiv.innerHTML = ''; // Clear existing text content
     
     const logoImg = document.createElement('img');
-    logoImg.src = 'images/logo.png'; // Path to your logo image
+    logoImg.src = 'images/logo.png';
     logoImg.alt = 'Deborah\'s Psychic Readings Logo';
     logoImg.className = 'logo-img';
     
     // Make logo clickable to return home
     logoImg.style.cursor = 'pointer';
     logoImg.addEventListener('click', () => {
-      mainContent.innerHTML = '';
-      renderHomePage(mainContent);
-      window.scrollTo(0, 0);
+      handleNavigation('/', mainContent, renderHomePage);
     });
     
     logoDiv.appendChild(logoImg);
   }
 
-  // Menu items array
+  // Menu items array with paths
   const menuItems: MenuItem[] = [
-    { title: 'HOME', action: renderHomePage },
-    { title: 'PSYCHIC READINGS', action: renderReadingsPage },
-    { title: 'ABOUT', action: renderAboutPage },
-    { title: 'REVIEWS', action: renderReviewsPage },
-    { title: 'CONTACT ME', action: renderContactPage },
-    { title: 'TERMS', action: renderTermsPage }
+    { title: 'HOME', path: '/', action: renderHomePage },
+    { title: 'PSYCHIC READINGS', path: '/readings', action: renderReadingsPage },
+    { title: 'ABOUT', path: '/about', action: renderAboutPage },
+    { title: 'REVIEWS', path: '/reviews', action: renderReviewsPage },
+    { title: 'CONTACT ME', path: '/contact', action: renderContactPage },
+    { title: 'TERMS', path: '/terms', action: renderTermsPage }
   ];
 
   // Create menu list
@@ -55,20 +53,18 @@ export function setupMenu(header: HTMLElement, mainContent: HTMLElement) {
   menuItems.forEach(item => {
     const li = document.createElement('li');
     const a = document.createElement('a');
-    a.href = '#';
+    a.href = item.path; // Use actual path instead of #
     
     a.addEventListener('click', (e) => {
       e.preventDefault();
-      mainContent.innerHTML = '';
-      item.action(mainContent);
-      window.scrollTo(0, 0);
+      handleNavigation(item.path, mainContent, item.action);
     });
 
     const span = document.createElement('span');
     span.className = 'menu-item-text';
     span.textContent = item.title;
     
-    // Add star SVG
+    // Add star SVG (keep your existing SVG code)
     const starSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     starSvg.setAttribute('class', 'menu-star');
     starSvg.setAttribute('width', '9');
@@ -91,3 +87,34 @@ export function setupMenu(header: HTMLElement, mainContent: HTMLElement) {
   nav.appendChild(ul);
   header.appendChild(nav);
 }
+
+function handleNavigation(path: string, container: HTMLElement, renderFunction: (container: HTMLElement) => void) {
+  // Update browser URL
+  window.history.pushState({}, '', path);
+  
+  // Update canonical URL
+  updateCanonicalUrl(path);
+  
+  // Render content
+  container.innerHTML = '';
+  renderFunction(container);
+  window.scrollTo(0, 0);
+}
+
+function updateCanonicalUrl(path: string) {
+  const canonicalLink = document.getElementById('dynamic-canonical') as HTMLLinkElement;
+  if (!canonicalLink) return;
+  
+  const baseUrl = 'https://deborahspsychicreadings.co.nz';
+  const canonicalMap: Record<string, string> = {
+    '/': `${baseUrl}/`,
+    '/readings': `${baseUrl}/readings`,
+    '/about': `${baseUrl}/about`,
+    '/reviews': `${baseUrl}/reviews`,
+    '/contact': `${baseUrl}/contact`,
+    '/terms': `${baseUrl}/terms`
+  };
+  
+  canonicalLink.href = canonicalMap[path] || `${baseUrl}/`;
+}
+
