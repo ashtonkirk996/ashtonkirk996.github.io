@@ -3,10 +3,19 @@ import { setupMenu } from "./menu";
 import { renderHomePage } from "./home";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
+const mainContent = document.createElement("main");
 
+// Handle GitHub Pages Redirects (Extract real path from query parameter)
+const currentUrl = new URL(window.location.href);
+const redirectedPath = currentUrl.searchParams.get("");
 
-
-
+if (redirectedPath) {
+  // Remove query parameter and restore clean URL
+  window.history.replaceState({}, "", redirectedPath);
+  
+  // Dispatch custom event to trigger navigation
+  window.dispatchEvent(new CustomEvent("routechange", { detail: { path: redirectedPath } }));
+}
 
 // Create background container
 const backgroundContainer = document.createElement("div");
@@ -24,6 +33,7 @@ header.innerHTML = `
   </div>
 `;
 app.appendChild(header);
+app.appendChild(mainContent);
 
 // Add scroll handler for header effect
 let lastScroll = 0;
@@ -42,16 +52,15 @@ window.addEventListener("scroll", () => {
   }
 });
 
-
-
+// Scroll animation handler
 function initScrollAnimation() {
   const scrollElements = document.querySelectorAll<HTMLElement>('.scroll-animate');
-  
+
   const elementInView = (el: HTMLElement, offset = 0): boolean => {
     const elementTop = el.getBoundingClientRect().top;
     return elementTop <= (window.innerHeight || document.documentElement.clientHeight) - offset;
   };
-  
+
   const handleScrollAnimation = () => {
     scrollElements.forEach((el, index) => {
       if (elementInView(el, 100)) {
@@ -61,7 +70,7 @@ function initScrollAnimation() {
     });
   };
 
-  // Initialize with debounce
+  // Debounce for performance
   let isScrolling: ReturnType<typeof setTimeout>;
   window.addEventListener('scroll', () => {
     clearTimeout(isScrolling);
@@ -72,63 +81,58 @@ function initScrollAnimation() {
   handleScrollAnimation();
 }
 
-// Create main content area
-const mainContent = document.createElement("main");
-app.appendChild(mainContent);
-
 // Setup menu with navigation
 setupMenu(header, mainContent);
 
 // Render home page by default
 renderHomePage(mainContent);
 
-// SIMPLE SOLUTION: Watch for content changes and re-run animations
+// Observe content changes for re-triggering animations
 const observer = new MutationObserver(() => {
   if (document.querySelector('.pricing-section')) {
     initScrollAnimation();
   }
 });
+observer.observe(mainContent, { childList: true, subtree: true });
 
+// "Book Now" button behavior
 function setupBookNowButtons() {
   document.addEventListener('click', (e) => {
     const button = (e.target as HTMLElement).closest('.card-button');
     if (button) {
       const bookingNotice = document.querySelector('.booking-notice');
       if (bookingNotice) {
-        bookingNotice.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'center'
-        });
-        
+        bookingNotice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
         // Optional: Add a visual pulse effect when scrolling to it
         bookingNotice.classList.add('highlight-pulse');
-        setTimeout(() => {
-          bookingNotice.classList.remove('highlight-pulse');
-        }, 2000);
+        setTimeout(() => bookingNotice.classList.remove('highlight-pulse'), 2000);
       }
     }
   });
 }
 
+// Handle route changes
+window.addEventListener("routechange", (e) => {
+  const path = (e as CustomEvent).detail.path;
+  
+  // Update document title
+  document.title = `Deborah's Psychic Readings - ${path.slice(1) || "Home"}`;
 
+  // Clear main content and load the correct page
+  mainContent.innerHTML = "";
 
-
-observer.observe(mainContent, {
-  childList: true,
-  subtree: true
+  if (path === "/contact") {
+    import("./contact").then(({ renderContactPage }) => renderContactPage(mainContent));
+  } else if (path === "/about") {
+    import("./about").then(({ renderAboutPage }) => renderAboutPage(mainContent));
+  } else {
+    renderHomePage(mainContent);
+  }
 });
 
-
-
-document.addEventListener('DOMContentLoaded', () => {
+// Run animations & setup interactions on page load
+document.addEventListener("DOMContentLoaded", () => {
   initScrollAnimation();
   setupBookNowButtons();
-
 });
-window.addEventListener('routechange', (e) => {
-  // Update page title, canonical URL, etc.
-  const path = (e as CustomEvent).detail.path;
-  document.title = `Deborah's Psychic Readings - ${path.slice(1) || 'Home'}`;
-});
-
-
