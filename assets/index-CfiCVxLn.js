@@ -1,4 +1,4 @@
-(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))a(t);new MutationObserver(t=>{for(const i of t)if(i.type==="childList")for(const o of i.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&a(o)}).observe(document,{childList:!0,subtree:!0});function n(t){const i={};return t.integrity&&(i.integrity=t.integrity),t.referrerPolicy&&(i.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?i.credentials="include":t.crossOrigin==="anonymous"?i.credentials="omit":i.credentials="same-origin",i}function a(t){if(t.ep)return;t.ep=!0;const i=n(t);fetch(t.href,i)}})();function p(e){e.innerHTML=`
+(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))a(i);new MutationObserver(i=>{for(const n of i)if(n.type==="childList")for(const o of n.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&a(o)}).observe(document,{childList:!0,subtree:!0});function t(i){const n={};return i.integrity&&(n.integrity=i.integrity),i.referrerPolicy&&(n.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?n.credentials="include":i.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function a(i){if(i.ep)return;i.ep=!0;const n=t(i);fetch(i.href,n)}})();function p(e){e.innerHTML=`
      <section class="hero">
     <h1>PSYCHIC READINGS, <br> ASTOUNDINGLY <br> <span class="highlight">RELATABLE</span></h1>
     <p>Are you at crossroads and want to know what each path holds so you can make a wise decision that's in alignment with your goals?</p>
@@ -98,7 +98,7 @@
     </div>
   </div>
     </section>
-    `}function w(e){e.innerHTML=`
+    `}function E(e){e.innerHTML=`
       <section class="readings-section">
         <h2>ALL YOU NEED TO KNOW</h2>
         <div class="reading-options">
@@ -107,21 +107,21 @@ You can choose readings via telephone, face to face. There are set time options 
        </p>
 </div>
       </section>
-    `}function E(e){e.innerHTML=`
+    `}function L(e){e.innerHTML=`
       <section class="about-section">
         <h2>ABOUT DEBORAH</h2>
         <div class="about-content">
           <!-- Add about content here -->
         </div>
       </section>
-    `}function L(e){e.innerHTML=`
+    `}function T(e){e.innerHTML=`
       <section class="reviews-section">
         <h2>CLIENT TESTIMONIALS</h2>
         <div class="reviews-container">
           <!-- Add reviews here -->
         </div>
       </section>
-    `}function T(e){e.innerHTML=`
+    `}function A(e){e.innerHTML=`
     <section class="contact-section">
       <h2>CONTACT DEBORAH</h2>
       <div class="contact-content">
@@ -151,18 +151,18 @@ You can choose readings via telephone, face to face. There are set time options 
         </form>
       </div>
     </section>
-  `;const s=e.querySelector("#contactForm");s==null||s.addEventListener("submit",n=>{n.preventDefault(),alert("This is a demo, no message was sent.")})}function A(e){e.innerHTML=`
+  `;const s=e.querySelector("#contactForm");s==null||s.addEventListener("submit",t=>{t.preventDefault(),alert("This is a demo, no message was sent.")})}function C(e){e.innerHTML=`
       <section class="terms-section">
         <h2>TERMS & CONDITIONS</h2>
         <div class="terms-content">
           <!-- Add terms content here -->
         </div>
       </section>
-    `}function S(e,s){const n=document.createElement("nav");n.className="main-nav";const a=e.querySelector(".logo");if(a){a.innerHTML="";const o=document.createElement("img");o.src="images/logo.png",o.alt="Deborah's Psychic Readings Logo",o.className="logo-img",o.style.cursor="pointer",o.addEventListener("click",()=>{s.innerHTML="",p(s),window.scrollTo(0,0)}),a.appendChild(o)}const t=[{title:"HOME",action:p},{title:"PSYCHIC READINGS",action:w},{title:"ABOUT",action:E},{title:"REVIEWS",action:L},{title:"CONTACT ME",action:T},{title:"TERMS",action:A}],i=document.createElement("ul");i.className="menu-list",t.forEach(o=>{const m=document.createElement("li"),d=document.createElement("a");d.href="#",d.addEventListener("click",y=>{y.preventDefault(),s.innerHTML="",o.action(s),window.scrollTo(0,0)});const u=document.createElement("span");u.className="menu-item-text",u.textContent=o.title;const r=document.createElementNS("http://www.w3.org/2000/svg","svg");r.setAttribute("class","menu-star"),r.setAttribute("width","9"),r.setAttribute("height","9"),r.setAttribute("viewBox","0 0 9 9");const l=document.createElementNS("http://www.w3.org/2000/svg","path");l.setAttribute("d","M0 4.5A4.456 4.456 0 0 0 4.5 0 4.456 4.456 0 0 0 9 4.5 4.456 4.456 0 0 0 4.5 9 4.456 4.456 0 0 0 0 4.5Z"),l.setAttribute("stroke-linecap","square"),l.setAttribute("stroke-linejoin","bevel"),l.setAttribute("stroke-miterlimit","10"),r.appendChild(l),u.appendChild(r),d.appendChild(u),m.appendChild(d),i.appendChild(m)}),n.appendChild(i),e.appendChild(n)}const g=document.querySelector("#app"),f=document.createElement("div");f.innerHTML=`
+    `}function S(e,s){const t=document.createElement("nav");t.className="main-nav";const a=e.querySelector(".logo");if(a){a.innerHTML="";const o=document.createElement("img");o.src="images/logo.png",o.alt="Deborah's Psychic Readings Logo",o.className="logo-img",o.style.cursor="pointer",o.addEventListener("click",()=>{v("/",s,p)}),a.appendChild(o)}const i=[{title:"HOME",path:"/",action:p},{title:"PSYCHIC READINGS",path:"/readings",action:E},{title:"ABOUT",path:"/about",action:L},{title:"REVIEWS",path:"/reviews",action:T},{title:"CONTACT ME",path:"/contact",action:A},{title:"TERMS",path:"/terms",action:C}],n=document.createElement("ul");n.className="menu-list",i.forEach(o=>{const m=document.createElement("li"),d=document.createElement("a");d.href=o.path,d.addEventListener("click",w=>{w.preventDefault(),v(o.path,s,o.action)});const u=document.createElement("span");u.className="menu-item-text",u.textContent=o.title;const r=document.createElementNS("http://www.w3.org/2000/svg","svg");r.setAttribute("class","menu-star"),r.setAttribute("width","9"),r.setAttribute("height","9"),r.setAttribute("viewBox","0 0 9 9");const l=document.createElementNS("http://www.w3.org/2000/svg","path");l.setAttribute("d","M0 4.5A4.456 4.456 0 0 0 4.5 0 4.456 4.456 0 0 0 9 4.5 4.456 4.456 0 0 0 4.5 9 4.456 4.456 0 0 0 0 4.5Z"),l.setAttribute("stroke-linecap","square"),l.setAttribute("stroke-linejoin","bevel"),l.setAttribute("stroke-miterlimit","10"),r.appendChild(l),u.appendChild(r),d.appendChild(u),m.appendChild(d),n.appendChild(m)}),t.appendChild(n),e.appendChild(t)}function v(e,s,t){window.history.pushState({},"",e),k(e),s.innerHTML="",t(s),window.scrollTo(0,0)}function k(e){const s=document.getElementById("dynamic-canonical");if(!s)return;const t="https://deborahspsychicreadings.co.nz",a={"/":`${t}/`,"/readings":`${t}/readings`,"/about":`${t}/about`,"/reviews":`${t}/reviews`,"/contact":`${t}/contact`,"/terms":`${t}/terms`};s.href=a[e]||`${t}/`}const b=document.querySelector("#app"),f=document.createElement("div");f.innerHTML=`
   <div class="background-circle circle1"></div>
   <div class="background-circle circle2"></div>
 `;document.body.prepend(f);const c=document.createElement("header");c.innerHTML=`
   <div class="logo">
     <span>DEBORAH'S <br> PSYCHIC READINGS</span>
   </div>
-`;g.appendChild(c);let v=0;window.addEventListener("scroll",()=>{const e=window.pageYOffset;e>50?(c.classList.add("scrolled"),e>v?c.classList.add("hidden"):c.classList.remove("hidden"),v=e):c.classList.remove("scrolled","hidden")});function b(){const e=document.querySelectorAll(".scroll-animate"),s=(t,i=0)=>t.getBoundingClientRect().top<=(window.innerHeight||document.documentElement.clientHeight)-i,n=()=>{e.forEach((t,i)=>{s(t,100)&&(t.style.transitionDelay=`${i*.1}s`,t.classList.add("visible"))})};let a;window.addEventListener("scroll",()=>{clearTimeout(a),a=setTimeout(n,50)}),n()}const h=document.createElement("main");g.appendChild(h);S(c,h);p(h);const C=new MutationObserver(()=>{document.querySelector(".pricing-section")&&b()});function k(){document.addEventListener("click",e=>{if(e.target.closest(".card-button")){const n=document.querySelector(".booking-notice");n&&(n.scrollIntoView({behavior:"smooth",block:"center"}),n.classList.add("highlight-pulse"),setTimeout(()=>{n.classList.remove("highlight-pulse")},2e3))}})}C.observe(h,{childList:!0,subtree:!0});document.addEventListener("DOMContentLoaded",()=>{b(),k()});
+`;b.appendChild(c);let g=0;window.addEventListener("scroll",()=>{const e=window.pageYOffset;e>50?(c.classList.add("scrolled"),e>g?c.classList.add("hidden"):c.classList.remove("hidden"),g=e):c.classList.remove("scrolled","hidden")});function y(){const e=document.querySelectorAll(".scroll-animate"),s=(i,n=0)=>i.getBoundingClientRect().top<=(window.innerHeight||document.documentElement.clientHeight)-n,t=()=>{e.forEach((i,n)=>{s(i,100)&&(i.style.transitionDelay=`${n*.1}s`,i.classList.add("visible"))})};let a;window.addEventListener("scroll",()=>{clearTimeout(a),a=setTimeout(t,50)}),t()}const h=document.createElement("main");b.appendChild(h);S(c,h);p(h);const N=new MutationObserver(()=>{document.querySelector(".pricing-section")&&y()});function I(){document.addEventListener("click",e=>{if(e.target.closest(".card-button")){const t=document.querySelector(".booking-notice");t&&(t.scrollIntoView({behavior:"smooth",block:"center"}),t.classList.add("highlight-pulse"),setTimeout(()=>{t.classList.remove("highlight-pulse")},2e3))}})}N.observe(h,{childList:!0,subtree:!0});document.addEventListener("DOMContentLoaded",()=>{y(),I()});window.addEventListener("routechange",e=>{const s=e.detail.path;document.title=`Deborah's Psychic Readings - ${s.slice(1)||"Home"}`});
