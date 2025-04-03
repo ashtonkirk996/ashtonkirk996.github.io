@@ -1,4 +1,4 @@
-(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))a(i);new MutationObserver(i=>{for(const n of i)if(n.type==="childList")for(const o of n.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&a(o)}).observe(document,{childList:!0,subtree:!0});function t(i){const n={};return i.integrity&&(n.integrity=i.integrity),i.referrerPolicy&&(n.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?n.credentials="include":i.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function a(i){if(i.ep)return;i.ep=!0;const n=t(i);fetch(i.href,n)}})();function p(e){e.innerHTML=`
+(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))r(i);new MutationObserver(i=>{for(const o of i)if(o.type==="childList")for(const n of o.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&r(n)}).observe(document,{childList:!0,subtree:!0});function e(i){const o={};return i.integrity&&(o.integrity=i.integrity),i.referrerPolicy&&(o.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?o.credentials="include":i.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function r(i){if(i.ep)return;i.ep=!0;const o=e(i);fetch(i.href,o)}})();const P="modulepreload",k=function(t){return"/"+t},f={},b=function(s,e,r){let i=Promise.resolve();if(e&&e.length>0){document.getElementsByTagName("link");const n=document.querySelector("meta[property=csp-nonce]"),l=(n==null?void 0:n.nonce)||(n==null?void 0:n.getAttribute("nonce"));i=Promise.allSettled(e.map(c=>{if(c=k(c),c in f)return;f[c]=!0;const d=c.endsWith(".css"),u=d?'[rel="stylesheet"]':"";if(document.querySelector(`link[href="${c}"]${u}`))return;const a=document.createElement("link");if(a.rel=d?"stylesheet":P,d||(a.as="script"),a.crossOrigin="",a.href=c,l&&a.setAttribute("nonce",l),document.head.appendChild(a),d)return new Promise((v,C)=>{a.addEventListener("load",v),a.addEventListener("error",()=>C(new Error(`Unable to preload CSS for ${c}`)))})}))}function o(n){const l=new Event("vite:preloadError",{cancelable:!0});if(l.payload=n,window.dispatchEvent(l),!l.defaultPrevented)throw n}return i.then(n=>{for(const l of n||[])l.status==="rejected"&&o(l.reason);return s().catch(o)})};function p(t){t.innerHTML=`
      <section class="hero">
     <h1>PSYCHIC READINGS, <br> ASTOUNDINGLY <br> <span class="highlight">RELATABLE</span></h1>
     <p>Are you at crossroads and want to know what each path holds so you can make a wise decision that's in alignment with your goals?</p>
@@ -98,7 +98,7 @@
     </div>
   </div>
     </section>
-    `}function E(e){e.innerHTML=`
+    `}function O(t){t.innerHTML=`
       <section class="readings-section">
         <h2>ALL YOU NEED TO KNOW</h2>
         <div class="reading-options">
@@ -107,21 +107,21 @@ You can choose readings via telephone, face to face. There are set time options 
        </p>
 </div>
       </section>
-    `}function L(e){e.innerHTML=`
+    `}function E(t){t.innerHTML=`
       <section class="about-section">
         <h2>ABOUT DEBORAH</h2>
         <div class="about-content">
           <!-- Add about content here -->
         </div>
       </section>
-    `}function T(e){e.innerHTML=`
+    `}const I=Object.freeze(Object.defineProperty({__proto__:null,renderAboutPage:E},Symbol.toStringTag,{value:"Module"}));function N(t){t.innerHTML=`
       <section class="reviews-section">
         <h2>CLIENT TESTIMONIALS</h2>
         <div class="reviews-container">
           <!-- Add reviews here -->
         </div>
       </section>
-    `}function A(e){e.innerHTML=`
+    `}function L(t){t.innerHTML=`
     <section class="contact-section">
       <h2>CONTACT DEBORAH</h2>
       <div class="contact-content">
@@ -151,18 +151,18 @@ You can choose readings via telephone, face to face. There are set time options 
         </form>
       </div>
     </section>
-  `;const s=e.querySelector("#contactForm");s==null||s.addEventListener("submit",t=>{t.preventDefault(),alert("This is a demo, no message was sent.")})}function C(e){e.innerHTML=`
+  `;const s=t.querySelector("#contactForm");s==null||s.addEventListener("submit",e=>{e.preventDefault(),alert("This is a demo, no message was sent.")})}const R=Object.freeze(Object.defineProperty({__proto__:null,renderContactPage:L},Symbol.toStringTag,{value:"Module"}));function M(t){t.innerHTML=`
       <section class="terms-section">
         <h2>TERMS & CONDITIONS</h2>
         <div class="terms-content">
           <!-- Add terms content here -->
         </div>
       </section>
-    `}function S(e,s){const t=document.createElement("nav");t.className="main-nav";const a=e.querySelector(".logo");if(a){a.innerHTML="";const o=document.createElement("img");o.src="images/logo.png",o.alt="Deborah's Psychic Readings Logo",o.className="logo-img",o.style.cursor="pointer",o.addEventListener("click",()=>{v("/",s,p)}),a.appendChild(o)}const i=[{title:"HOME",path:"/",action:p},{title:"PSYCHIC READINGS",path:"/readings",action:E},{title:"ABOUT",path:"/about",action:L},{title:"REVIEWS",path:"/reviews",action:T},{title:"CONTACT ME",path:"/contact",action:A},{title:"TERMS",path:"/terms",action:C}],n=document.createElement("ul");n.className="menu-list",i.forEach(o=>{const m=document.createElement("li"),d=document.createElement("a");d.href=o.path,d.addEventListener("click",w=>{w.preventDefault(),v(o.path,s,o.action)});const u=document.createElement("span");u.className="menu-item-text",u.textContent=o.title;const r=document.createElementNS("http://www.w3.org/2000/svg","svg");r.setAttribute("class","menu-star"),r.setAttribute("width","9"),r.setAttribute("height","9"),r.setAttribute("viewBox","0 0 9 9");const l=document.createElementNS("http://www.w3.org/2000/svg","path");l.setAttribute("d","M0 4.5A4.456 4.456 0 0 0 4.5 0 4.456 4.456 0 0 0 9 4.5 4.456 4.456 0 0 0 4.5 9 4.456 4.456 0 0 0 0 4.5Z"),l.setAttribute("stroke-linecap","square"),l.setAttribute("stroke-linejoin","bevel"),l.setAttribute("stroke-miterlimit","10"),r.appendChild(l),u.appendChild(r),d.appendChild(u),m.appendChild(d),n.appendChild(m)}),t.appendChild(n),e.appendChild(t)}function v(e,s,t){window.history.pushState({},"",e),k(e),s.innerHTML="",t(s),window.scrollTo(0,0)}function k(e){const s=document.getElementById("dynamic-canonical");if(!s)return;const t="https://deborahspsychicreadings.co.nz",a={"/":`${t}/`,"/readings":`${t}/readings`,"/about":`${t}/about`,"/reviews":`${t}/reviews`,"/contact":`${t}/contact`,"/terms":`${t}/terms`};s.href=a[e]||`${t}/`}const b=document.querySelector("#app"),f=document.createElement("div");f.innerHTML=`
+    `}function H(t,s){const e=document.createElement("nav");e.className="main-nav";const r=t.querySelector(".logo");if(r){r.innerHTML="";const n=document.createElement("img");n.src="images/logo.png",n.alt="Deborah's Psychic Readings Logo",n.className="logo-img",n.style.cursor="pointer",n.addEventListener("click",()=>{y("/",s,p)}),r.appendChild(n)}const i=[{title:"HOME",path:"/",action:p},{title:"PSYCHIC READINGS",path:"/readings",action:O},{title:"ABOUT",path:"/about",action:E},{title:"REVIEWS",path:"/reviews",action:N},{title:"CONTACT ME",path:"/contact",action:L},{title:"TERMS",path:"/terms",action:M}],o=document.createElement("ul");o.className="menu-list",i.forEach(n=>{const l=document.createElement("li"),c=document.createElement("a");c.href=n.path,c.addEventListener("click",v=>{v.preventDefault(),y(n.path,s,n.action)});const d=document.createElement("span");d.className="menu-item-text",d.textContent=n.title;const u=document.createElementNS("http://www.w3.org/2000/svg","svg");u.setAttribute("class","menu-star"),u.setAttribute("width","9"),u.setAttribute("height","9"),u.setAttribute("viewBox","0 0 9 9");const a=document.createElementNS("http://www.w3.org/2000/svg","path");a.setAttribute("d","M0 4.5A4.456 4.456 0 0 0 4.5 0 4.456 4.456 0 0 0 9 4.5 4.456 4.456 0 0 0 4.5 9 4.456 4.456 0 0 0 0 4.5Z"),a.setAttribute("stroke-linecap","square"),a.setAttribute("stroke-linejoin","bevel"),a.setAttribute("stroke-miterlimit","10"),u.appendChild(a),d.appendChild(u),c.appendChild(d),l.appendChild(c),o.appendChild(l)}),e.appendChild(o),t.appendChild(e)}function y(t,s,e){window.history.pushState({},"",t),_(t),s.innerHTML="",e(s),window.scrollTo(0,0)}function _(t){const s=document.getElementById("dynamic-canonical");if(!s)return;const e="https://deborahspsychicreadings.co.nz",r={"/":`${e}/`,"/readings":`${e}/readings`,"/about":`${e}/about`,"/reviews":`${e}/reviews`,"/contact":`${e}/contact`,"/terms":`${e}/terms`};s.href=r[t]||`${e}/`}const S=document.querySelector("#app"),h=document.createElement("main"),B=new URL(window.location.href),g=B.searchParams.get("");g&&(window.history.replaceState({},"",g),window.dispatchEvent(new CustomEvent("routechange",{detail:{path:g}})));const T=document.createElement("div");T.innerHTML=`
   <div class="background-circle circle1"></div>
   <div class="background-circle circle2"></div>
-`;document.body.prepend(f);const c=document.createElement("header");c.innerHTML=`
+`;document.body.prepend(T);const m=document.createElement("header");m.innerHTML=`
   <div class="logo">
     <span>DEBORAH'S <br> PSYCHIC READINGS</span>
   </div>
-`;b.appendChild(c);let g=0;window.addEventListener("scroll",()=>{const e=window.pageYOffset;e>50?(c.classList.add("scrolled"),e>g?c.classList.add("hidden"):c.classList.remove("hidden"),g=e):c.classList.remove("scrolled","hidden")});function y(){const e=document.querySelectorAll(".scroll-animate"),s=(i,n=0)=>i.getBoundingClientRect().top<=(window.innerHeight||document.documentElement.clientHeight)-n,t=()=>{e.forEach((i,n)=>{s(i,100)&&(i.style.transitionDelay=`${n*.1}s`,i.classList.add("visible"))})};let a;window.addEventListener("scroll",()=>{clearTimeout(a),a=setTimeout(t,50)}),t()}const h=document.createElement("main");b.appendChild(h);S(c,h);p(h);const N=new MutationObserver(()=>{document.querySelector(".pricing-section")&&y()});function I(){document.addEventListener("click",e=>{if(e.target.closest(".card-button")){const t=document.querySelector(".booking-notice");t&&(t.scrollIntoView({behavior:"smooth",block:"center"}),t.classList.add("highlight-pulse"),setTimeout(()=>{t.classList.remove("highlight-pulse")},2e3))}})}N.observe(h,{childList:!0,subtree:!0});document.addEventListener("DOMContentLoaded",()=>{y(),I()});window.addEventListener("routechange",e=>{const s=e.detail.path;document.title=`Deborah's Psychic Readings - ${s.slice(1)||"Home"}`});
+`;S.appendChild(m);S.appendChild(h);let w=0;window.addEventListener("scroll",()=>{const t=window.pageYOffset;t>50?(m.classList.add("scrolled"),t>w?m.classList.add("hidden"):m.classList.remove("hidden"),w=t):m.classList.remove("scrolled","hidden")});function A(){const t=document.querySelectorAll(".scroll-animate"),s=(i,o=0)=>i.getBoundingClientRect().top<=(window.innerHeight||document.documentElement.clientHeight)-o,e=()=>{t.forEach((i,o)=>{s(i,100)&&(i.style.transitionDelay=`${o*.1}s`,i.classList.add("visible"))})};let r;window.addEventListener("scroll",()=>{clearTimeout(r),r=setTimeout(e,50)}),e()}H(m,h);p(h);const D=new MutationObserver(()=>{document.querySelector(".pricing-section")&&A()});D.observe(h,{childList:!0,subtree:!0});function $(){document.addEventListener("click",t=>{if(t.target.closest(".card-button")){const e=document.querySelector(".booking-notice");e&&(e.scrollIntoView({behavior:"smooth",block:"center"}),e.classList.add("highlight-pulse"),setTimeout(()=>e.classList.remove("highlight-pulse"),2e3))}})}window.addEventListener("routechange",t=>{const s=t.detail.path;document.title=`Deborah's Psychic Readings - ${s.slice(1)||"Home"}`,h.innerHTML="",s==="/contact"?b(async()=>{const{renderContactPage:e}=await Promise.resolve().then(()=>R);return{renderContactPage:e}},void 0).then(({renderContactPage:e})=>e(h)):s==="/about"?b(async()=>{const{renderAboutPage:e}=await Promise.resolve().then(()=>I);return{renderAboutPage:e}},void 0).then(({renderAboutPage:e})=>e(h)):p(h)});document.addEventListener("DOMContentLoaded",()=>{A(),$()});
