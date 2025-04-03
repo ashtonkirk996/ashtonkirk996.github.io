@@ -5,16 +5,27 @@ import { renderHomePage } from "./home";
 const app = document.querySelector<HTMLDivElement>("#app")!;
 const mainContent = document.createElement("main");
 
-// Handle GitHub Pages Redirects (Extract real path from query parameter)
+// Handle GitHub Pages Redirects
 const currentUrl = new URL(window.location.href);
-const redirectedPath = currentUrl.searchParams.get("");
+let redirectedPath = "";
+
+// Check if we were redirected from 404.html (path is in the query string)
+if (currentUrl.search) {
+  redirectedPath = currentUrl.search.slice(1); // Remove the '?'
+  // Ensure path starts with '/'
+  if (!redirectedPath.startsWith("/")) {
+    redirectedPath = `/${redirectedPath}`;
+  }
+}
 
 if (redirectedPath) {
-  // Remove query parameter and restore clean URL
+  // Clean up the URL
   window.history.replaceState({}, "", redirectedPath);
   
-  // Dispatch custom event to trigger navigation
-  window.dispatchEvent(new CustomEvent("routechange", { detail: { path: redirectedPath } }));
+  // Trigger navigation
+  window.dispatchEvent(new CustomEvent("routechange", { 
+    detail: { path: redirectedPath } 
+  }));
 }
 
 // Create background container
