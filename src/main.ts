@@ -11,10 +11,12 @@ let redirectedPath = "";
 
 // Check if we were redirected from 404.html (path is in the query string)
 if (currentUrl.search) {
-  redirectedPath = currentUrl.search.slice(1); // Remove the '?'
-  // Ensure path starts with '/'
-  if (!redirectedPath.startsWith("/")) {
-    redirectedPath = `/${redirectedPath}`;
+  // The path comes after '?/' in the query string
+  const queryPath = currentUrl.search.slice(2); // Remove the '?/'
+  
+  // Only process if we have a valid path
+  if (queryPath && !queryPath.startsWith('index.html')) {
+    redirectedPath = `/${queryPath.split('?')[0]}`; // Take only the path part before any additional query params
   }
 }
 
