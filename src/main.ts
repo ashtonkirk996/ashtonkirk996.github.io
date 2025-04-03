@@ -4,14 +4,6 @@ import { renderHomePage } from "./home";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
-// Replace the existing handleNavigation and updateCanonicalUrl with:
-function updateCanonicalUrl(path: string) {
-  const canonicalLink = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-  if (!canonicalLink) return;
-
-  const baseUrl = 'https://deborahspsychicreadings.co.nz';
-  canonicalLink.href = `${baseUrl}${path}`;
-}
 
 
 
