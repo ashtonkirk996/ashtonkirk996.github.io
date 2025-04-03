@@ -7,28 +7,25 @@ const mainContent = document.createElement("main");
 
 // Handle GitHub Pages Redirects
 const currentUrl = new URL(window.location.href);
-let redirectedPath = "";
+let targetPath = '/'; // Default to home
 
-// Check if we were redirected from 404.html (path is in the query string)
-if (currentUrl.search) {
-  // The path comes after '?/' in the query string
-  const queryPath = currentUrl.search.slice(2); // Remove the '?/'
-  
-  // Only process if we have a valid path
-  if (queryPath && !queryPath.startsWith('index.html')) {
-    redirectedPath = `/${queryPath.split('?')[0]}`; // Take only the path part before any additional query params
-  }
+// Check for redirect parameter
+const redirectParam = currentUrl.searchParams.get('p');
+if (redirectParam) {
+  targetPath = '/' + decodeURIComponent(redirectParam);
+  // Clean up the URL in browser history
+  window.history.replaceState({}, '', targetPath);
 }
 
-if (redirectedPath) {
-  // Clean up the URL
-  window.history.replaceState({}, "", redirectedPath);
-  
-  // Trigger navigation
-  window.dispatchEvent(new CustomEvent("routechange", { 
-    detail: { path: redirectedPath } 
+// Now handle the initial page load routing
+if (targetPath !== '/') {
+  // Trigger navigation to the correct page
+  window.dispatchEvent(new CustomEvent("routechange", {
+    detail: { path: targetPath }
   }));
 }
+
+
 
 // Create background container
 const backgroundContainer = document.createElement("div");
@@ -126,21 +123,27 @@ function setupBookNowButtons() {
 }
 
 // Handle route changes
+// Handle route changes
 window.addEventListener("routechange", (e) => {
-  const path = (e as CustomEvent).detail.path;
+  const path = (e as CustomEvent).detail.path.toLowerCase();
   
-  // Update document title
-  document.title = `Deborah's Psychic Readings - ${path.slice(1) || "Home"}`;
-
-  // Clear main content and load the correct page
+  // Clear main content
   mainContent.innerHTML = "";
 
-  if (path === "/contact") {
-    import("./contact").then(({ renderContactPage }) => renderContactPage(mainContent));
-  } else if (path === "/about") {
-    import("./about").then(({ renderAboutPage }) => renderAboutPage(mainContent));
-  } else {
-    renderHomePage(mainContent);
+  // Handle routes
+  switch(path) {
+    case '/contact':
+      import("./contact").then(({ renderContactPage }) => renderContactPage(mainContent));
+      document.title = "Deborah's Psychic Readings - Contact";
+      break;
+    case '/about':
+      import("./about").then(({ renderAboutPage }) => renderAboutPage(mainContent));
+      document.title = "Deborah's Psychic Readings - About";
+      break;
+    default:
+      renderHomePage(mainContent);
+      document.title = "Deborah's Psychic Readings";
+      break;
   }
 });
 
