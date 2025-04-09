@@ -15,6 +15,7 @@ export function setupMenu(header: HTMLElement, mainContent: HTMLElement) {
   // Create nav element
   const nav = document.createElement('nav');
   nav.className = 'main-nav';
+  
 
   // Get logo container and replace text with image
   const logoDiv = header.querySelector('.logo');
@@ -53,18 +54,19 @@ export function setupMenu(header: HTMLElement, mainContent: HTMLElement) {
   menuItems.forEach(item => {
     const li = document.createElement('li');
     const a = document.createElement('a');
-    a.href = item.path; // Use actual path instead of #
+    a.href = item.path;
     
     a.addEventListener('click', (e) => {
       e.preventDefault();
       handleNavigation(item.path, mainContent, item.action);
+      // Close mobile menu when item is clicked
+      nav.classList.remove('active');
     });
 
     const span = document.createElement('span');
     span.className = 'menu-item-text';
     span.textContent = item.title;
     
-    // Add star SVG (keep your existing SVG code)
     const starSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     starSvg.setAttribute('class', 'menu-star');
     starSvg.setAttribute('width', '9');
@@ -86,6 +88,37 @@ export function setupMenu(header: HTMLElement, mainContent: HTMLElement) {
 
   nav.appendChild(ul);
   header.appendChild(nav);
+
+  // ===== MOBILE MENU TOGGLE =====
+  const menuToggle = document.createElement('button');
+  menuToggle.className = 'menu-toggle';
+  menuToggle.innerHTML = '☰';
+  menuToggle.setAttribute('aria-label', 'Toggle navigation menu');
+  header.appendChild(menuToggle);
+
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nav.classList.toggle('active');
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!header.contains(e.target as Node)) {
+      nav.classList.remove('active');
+    }
+  });
+
+  // Close menu when scrolling
+  window.addEventListener('scroll', () => {
+    nav.classList.remove('active');
+  });
+
+  // Handle navigation for mobile
+  ul.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+    });
+  });
 }
 
 function handleNavigation(path: string, container: HTMLElement, renderFunction: (container: HTMLElement) => void) {

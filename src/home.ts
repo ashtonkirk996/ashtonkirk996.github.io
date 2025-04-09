@@ -1,7 +1,7 @@
 export function renderHomePage(container: HTMLElement) {
     container.innerHTML = `
      <section class="hero">
-    <h1>PSYCHIC READINGS, <br> ASTOUNDINGLY <br> <span class="highlight">RELATABLE</span></h1>
+    <h1>PSYCHIC READINGS, <br> ASTOUNDINGLY <br> <span class="highlight">ACCURATE</span></h1>
     <p>Are you at crossroads and want to know what each path holds so you can make a wise decision that's in alignment with your goals?</p>
   </section>
     <section class="psychic-reading">
