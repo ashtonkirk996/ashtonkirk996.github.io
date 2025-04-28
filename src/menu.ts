@@ -151,7 +151,7 @@ window.addEventListener('resize', updateMenuToggleVisibility);
   });
 }
 
-function handleNavigation(path: string, container: HTMLElement, renderFunction: (container: HTMLElement) => void) {
+function handleNavigation(path: string, _container: HTMLElement, _renderFunction: (container: HTMLElement) => void) {
 
 
   const section = document.getElementById(path);
