@@ -45,6 +45,60 @@ header.innerHTML = `
 app.appendChild(header);
 app.appendChild(mainContent);
 
+const ctaImage = document.createElement("div");
+ctaImage.className= "cta-image";
+ctaImage.innerHTML =  `
+  <div class="cta-image-container">
+   <button class="book-now-btn">BOOK NOW</button>
+    <img src="/images/header.png" alt="cta image" class="cta-image-image">
+   
+  </div>
+  <img src="/images/cta.png" alt="cta image" class="cta-image-image">
+    <div class="cta-image-container">
+   <button class="book-now-btn2">BOOK NOW</button>
+    <img src="/images/cta2.png" alt="cta image" class="cta-image-image">
+   
+  </div>
+  <img src="/images/overview.png" alt="cta image" class="cta-image-image">
+
+
+  <div id="readings-section" class="cta-image-container">
+
+  <img src="/images/pricing.png" alt="cta image" class="cta-image-image">
+ 
+  <div class="button-row">
+    <button class="book-now-btn3">BOOK NOW</button>
+    <button class="book-now-btn3">BOOK NOW</button>
+    <button class="book-now-btn3">BOOK NOW</button>
+  </div>
+
+    <div class="button-row2">
+    <button class="book-now-btn3">BOOK NOW</button>
+    <button class="book-now-btn3">BOOK NOW</button>
+  </div>
+</div>
+
+
+    <div id="reviews-section" class="cta-image-container">
+   <button class="book-now-btn4">BOOK NOW</button>
+   
+ <img src="/images/testimonials.png" alt="cta image" class="cta-image-image">
+
+  </div>
+ 
+    <div id="about-section" class="cta-image-container">
+   <button class="book-now-btn5">BOOK NOW</button>
+
+  <img src="/images/about.png" alt="cta image" class="cta-image-image">
+  </div>
+     <div id="contact-section" class="cta-image-container">
+  <img src="/images/contact.png" alt="cta image" class="cta-image-image">
+  </div>
+  <img src="/images/rights.png" alt="cta image" class="cta-image-image">
+
+`;
+app.insertBefore(ctaImage, mainContent)
+
 // Add scroll handler for header effect
 let lastScroll = 0;
 window.addEventListener("scroll", () => {
@@ -105,22 +159,28 @@ const observer = new MutationObserver(() => {
 });
 observer.observe(mainContent, { childList: true, subtree: true });
 
-// "Book Now" button behavior
 function setupBookNowButtons() {
   document.addEventListener('click', (e) => {
-    const button = (e.target as HTMLElement).closest('.card-button');
+    // Handle ALL book now buttons (classes btn3, btn4, etc.)
+    const button = (e.target as HTMLElement).closest(
+      '.book-now-btn, .book-now-btn2, .book-now-btn3, .book-now-btn4, .book-now-btn5'
+    );
+    
     if (button) {
-      const bookingNotice = document.querySelector('.booking-notice');
-      if (bookingNotice) {
-        bookingNotice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Check if we're already on the contact page
 
-        // Optional: Add a visual pulse effect when scrolling to it
-        bookingNotice.classList.add('highlight-pulse');
-        setTimeout(() => bookingNotice.classList.remove('highlight-pulse'), 2000);
+        // Already on contact page - just scroll
+        const contactSection = document.getElementById('contact-section');
+        if (contactSection) {
+          contactSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+          
+        }
       }
-    }
-  });
-}
+    });
+  }
 
 // Handle route changes
 // Handle route changes

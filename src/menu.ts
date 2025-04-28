@@ -17,33 +17,46 @@ export function setupMenu(header: HTMLElement, mainContent: HTMLElement) {
   nav.className = 'main-nav';
   
 
-  // Get logo container and replace text with image
-  const logoDiv = header.querySelector('.logo');
-  if (logoDiv) {
-    logoDiv.innerHTML = ''; // Clear existing text content
-    
-    const logoImg = document.createElement('img');
-    logoImg.src = 'images/logo.png';
-    logoImg.alt = 'Deborah\'s Psychic Readings Logo';
-    logoImg.className = 'logo-img';
-    
-    // Make logo clickable to return home
-    logoImg.style.cursor = 'pointer';
-    logoImg.addEventListener('click', () => {
-      handleNavigation('/', mainContent, renderHomePage);
-    });
-    
-    logoDiv.appendChild(logoImg);
-  }
+ // Get logo container and replace text with both logo versions
+const logoDiv = header.querySelector('.logo');
+if (logoDiv) {
+  logoDiv.innerHTML = ''; // Clear existing text content
+  
+  // Create container for both logos
+  const logoContainer = document.createElement('div');
+  logoContainer.className = 'logo-container';
+  
+  // White logo (default)
+  const logoWhite = document.createElement('img');
+  logoWhite.src = 'images/logo_white.png';
+  logoWhite.alt = 'Deborah\'s Psychic Readings Logo';
+  logoWhite.className = 'logo-img logo-white';
+  
+  // Black logo (hidden initially)
+  const logoBlack = document.createElement('img');
+  logoBlack.src = 'images/logo_black.png';
+  logoBlack.alt = 'Deborah\'s Psychic Readings Logo';
+  logoBlack.className = 'logo-img logo-black';
+  
+  // Make logo clickable to return home
+  logoContainer.style.cursor = 'pointer';
+  logoContainer.addEventListener('click', () => {
+    handleNavigation('/', mainContent, renderHomePage);
+  });
+  
+  logoContainer.appendChild(logoWhite);
+  logoContainer.appendChild(logoBlack);
+  logoDiv.appendChild(logoContainer);
+}
 
   // Menu items array with paths
   const menuItems: MenuItem[] = [
     { title: 'HOME', path: '/', action: renderHomePage },
-    { title: 'PSYCHIC READINGS', path: '/readings', action: renderReadingsPage },
-    { title: 'ABOUT', path: '/about', action: renderAboutPage },
-    { title: 'REVIEWS', path: '/reviews', action: renderReviewsPage },
-    { title: 'CONTACT ME', path: '/contact', action: renderContactPage },
-    { title: 'TERMS', path: '/terms', action: renderTermsPage }
+    { title: 'PSYCHIC READINGS', path: 'readings-section', action: renderReadingsPage },
+    { title: 'ABOUT', path: 'about-section', action: renderAboutPage },
+    { title: 'REVIEWS', path: 'reviews-section', action: renderReviewsPage },
+    { title: 'CONTACT ME', path: 'contact-section', action: renderContactPage },
+    { title: 'TERMS', path: 'contact-section', action: renderTermsPage }
   ];
 
   // Create menu list
@@ -96,6 +109,23 @@ export function setupMenu(header: HTMLElement, mainContent: HTMLElement) {
   menuToggle.setAttribute('aria-label', 'Toggle navigation menu');
   header.appendChild(menuToggle);
 
+// Function to update visibility of the menu toggle
+function updateMenuToggleVisibility() {
+  // Media query for max-width of 768px (mobile)
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    menuToggle.style.display = "block";  // Show on mobile
+  } else {
+    menuToggle.style.display = "none";   // Hide on desktop
+  }
+}
+
+// Initial check when the page loads
+updateMenuToggleVisibility();
+
+// Update visibility whenever the window is resized
+window.addEventListener('resize', updateMenuToggleVisibility);
+
+
   menuToggle.addEventListener('click', (e) => {
     e.stopPropagation();
     nav.classList.toggle('active');
@@ -122,32 +152,33 @@ export function setupMenu(header: HTMLElement, mainContent: HTMLElement) {
 }
 
 function handleNavigation(path: string, container: HTMLElement, renderFunction: (container: HTMLElement) => void) {
-  // Update browser URL
-  window.history.pushState({}, '', path);
+
+
+  const section = document.getElementById(path);
+  if (section) {
+    section.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'start' 
+    });
   
-  // Update canonical URL
-  updateCanonicalUrl(path);
-  
-  // Render content
-  container.innerHTML = '';
-  renderFunction(container);
-  window.scrollTo(0, 0);
+}
 }
 
-function updateCanonicalUrl(path: string) {
-  const canonicalLink = document.getElementById('dynamic-canonical') as HTMLLinkElement;
-  if (!canonicalLink) return;
+
+// function updateCanonicalUrl(path: string) {
+//   const canonicalLink = document.getElementById('dynamic-canonical') as HTMLLinkElement;
+//   if (!canonicalLink) return;
   
-  const baseUrl = 'https://deborahspsychicreadings.co.nz';
-  const canonicalMap: Record<string, string> = {
-    '/': `${baseUrl}/`,
-    '/readings': `${baseUrl}/readings`,
-    '/about': `${baseUrl}/about`,
-    '/reviews': `${baseUrl}/reviews`,
-    '/contact': `${baseUrl}/contact`,
-    '/terms': `${baseUrl}/terms`
-  };
+//   const baseUrl = 'https://deborahspsychicreadings.co.nz';
+//   const canonicalMap: Record<string, string> = {
+//     '/': `${baseUrl}/`,
+//     '/readings': `${baseUrl}/readings`,
+//     '/about': `${baseUrl}/about`,
+//     '/reviews': `${baseUrl}/reviews`,
+//     '/contact': `${baseUrl}/contact`,
+//     '/terms': `${baseUrl}/terms`
+//   };
   
-  canonicalLink.href = canonicalMap[path] || `${baseUrl}/`;
-}
+//   canonicalLink.href = canonicalMap[path] || `${baseUrl}/`;
+// }
 

@@ -1,10 +1,12 @@
 /* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600&display=swap');
 @font-face {
   font-family: 'Serilo';
   src: url('/fonts/Serilo LH Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
+
 
 :root {
   --font-serilo: "Serilo", serif;
@@ -17,10 +19,10 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-serilo);
-  background: linear-gradient(-45deg, #fff5e6, #ffe4cc, #ffd8b3, #e6f0ff);
+  background: #232227;
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
-  padding-top: 80px;
+  padding-top: 0px;
 }
 
 @keyframes gradient {
@@ -48,6 +50,52 @@ header {
   transition: all 0.3s ease;
   background: transparent;
   box-sizing: border-box;
+}
+/* Logo container */
+.logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Logo base styles */
+.logo-img {
+  max-height: 40px;
+  width: auto;
+  transition: opacity 0.3s ease;
+}
+
+/* White logo visible by default */
+.logo-white {
+  display: block;
+  opacity: 1;
+}
+
+.logo-black {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  opacity: 0;
+}
+
+/* When header has scrolled class */
+header.scrolled .logo-white {
+  opacity: 0;
+}
+
+header.scrolled .logo-black {
+  opacity: 1;
+}
+
+/* For mobile menu active state */
+@media (max-width: 768px) {
+  .main-nav.active ~ .logo .logo-white {
+    opacity: 0;
+  }
+  
+  .main-nav.active ~ .logo .logo-black {
+    opacity: 1;
+  }
 }
 
 .logo {
@@ -110,9 +158,29 @@ nav {
 
 .menu-list li a:hover .menu-star path,
 .menu-star:hover path {
-  fill: var(--color-primary);
-  stroke: var(--color-primary);
+  fill: white;
+  stroke: white;
   transform: scale(1.1);
+}
+
+/* Scrolled state (white header) */
+header.scrolled .menu-list li a:hover .menu-star path,
+header.scrolled .menu-star:hover path {
+  fill: black; /* Your brown color */
+  stroke: black;
+}
+
+/* Mobile menu active state */
+.main-nav.active .menu-list li a:hover .menu-star path,
+.main-nav.active .menu-star:hover path {
+  fill: black; /* Your brown color */
+  stroke: black;
+}
+
+/* Scrolled state (white header) */
+header.scrolled .menu-list a {
+  color: black; /* Your brown color */
+  text-shadow: none;
 }
 
 .menu-list li a:hover .menu-item-text {
@@ -121,7 +189,7 @@ nav {
 
 .menu-list a {
   text-decoration: none;
-  color: var(--color-primary);
+  color: white;
   font-weight: 500;
   text-transform: uppercase;
   font-size: 1rem;
@@ -169,6 +237,14 @@ header.hidden {
   }
 }
 
+/* Mobile menu active state */
+@media (max-width: 768px) {
+  .main-nav.active .menu-list a {
+    color: var(--color-primary); /* Brown in mobile menu */
+    text-shadow: none;
+  }
+}
+
 
 
 /* Mobile-Specific Styles (768px and below) */
@@ -199,7 +275,7 @@ header.hidden {
 
   /* Show hamburger only on mobile */
   .menu-toggle {
-    display: block;
+    display: none;
     position: absolute;
     right: 1rem;
     top: 1rem;
@@ -215,9 +291,9 @@ header.hidden {
   }
 
 
-@media (min-width: 769px) {
+@media (max-width: 769px) {
   .menu-toggle {
-    display: none;
+    display: block;
   }
 }
 
@@ -260,17 +336,6 @@ header.hidden {
     margin: 0;
   }
   
-  .menu-toggle {
-    display: block;
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--color-primary);
-    z-index: 1001;
-  }
   
   .hero {
     padding: 2rem 1rem;
@@ -822,4 +887,390 @@ section h2 {
   0% { box-shadow: 0 0 0 0 rgba(176, 132, 80, 0.4); }
   70% { box-shadow: 0 0 0 15px rgba(176, 132, 80, 0); }
   100% { box-shadow: 0 0 0 0 rgba(176, 132, 80, 0); }
+}
+
+.top-banner-image {
+  width: 100%;
+  height: 780px; /* Adjust this to your desired visible height (1740px - 480px - 480px) */
+  overflow: hidden;
+  position: relative;
+}
+
+.top-banner-image img {
+  position: absolute;
+  width: 2140.66px;
+  height: 1740px;
+  top: -480px;
+  left: -325px;
+  max-width: none; 
+}
+
+/* Title overlay - PROPERLY CONSTRAINED */
+.title-overlay {
+  position: absolute;
+  top: 80%;
+  left: -39%;
+  width: 30%; /* Viewport width units for better control */
+  max-width: 300px; /* Absolute maximum size */
+  z-index: 2;
+}
+.title-overlay2 {
+  position: absolute;
+  top: 90%;
+  left: -32%;
+  width: 30%; /* Viewport width units for better control */
+  max-width: 300px; /* Absolute maximum size */
+  z-index: 2;
+}
+
+/* Title image - PROPERLY SIZED */
+.title-image {
+  width: 100%; /* Fills container */
+  height: auto; /* Maintains aspect ratio */
+  max-height: 47px; /* Hard limit on height */
+  object-fit: contain; /* Ensures full visibility */
+}
+.title-image2 {
+  width: 100%; /* Fills container */
+  height: auto; /* Maintains aspect ratio */
+  max-height: 200px; /* Hard limit on height */
+  object-fit: contain; /* Ensures full visibility */
+  top: -50px;
+  left: 120%;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .title-overlay {
+    width: 90vw;
+    max-width: 400px;
+  }
+  
+  .title-image {
+    max-height: 100px;
+  }
+}
+
+
+
+.title-text {
+  position: absolute;
+  width: 80%;
+  max-width: 500px;
+  left: 24%;
+  transform: translateX(-50%);
+  bottom: 15%;
+  z-index: 3;
+  text-align: left;
+  color: white;
+  font-family: 'Urbanist', sans-serif; /* Applied Urbanist */
+  font-weight: 150; /* Medium weight */
+  font-size: 1.5rem;
+  line-height: 1.6;
+  padding: 15px;
+}
+
+/* Enhanced version with animation */
+.title-text p {
+  animation: fadeInUp 1s ease-out both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .title-text {
+    width: 90%;
+    font-size: 1.1rem;
+    bottom: 15%;
+    padding: 10px;
+  }
+}
+
+.cta-image-container {
+  position: relative;
+  width: 100%; /* Ensure container takes full width */
+  height: 100%; /* Ensure container stretches fully */
+  display: block; /* Ensure block-level behavior */
+}
+
+
+
+.book-now-btn {
+  /* Positioning */
+  position: absolute;
+  bottom: 12%; /* Adjust vertically */
+  left: 15%;
+  transform: translateX(-50%);
+
+  /* Scalable Sizing */
+  padding: 0.8em 2.5em; /* em scales with font-size */
+  font-size: 1.5vw; /* Responsive font */
+  border-radius: 100em; /* Ensures pill shape (100em = super rounded) */
+  aspect-ratio: 3.5/1; /* Optional: Keeps width/height ratio (e.g., 3.5x wider than tall) */
+
+  /* Styling */
+  background: rgba(176, 132, 80, 1);
+  color: white;
+  border: none;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+/* Hover/Active States */
+.book-now-btn:hover {
+  background: rgba(156, 112, 60, 1);
+  transform: translateX(-50%) scale(1.05);
+}
+.book-now-btn:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .book-now-btn {
+    font-size: 0.9rem; /* Slightly smaller text */
+    padding: 0.6em 1.8em; /* Tighter padding */
+  }
+}
+
+.cta-image-image{
+  max-width: 100%;  /* Critical - prevents overflow */
+  width: 100%;      /* Fills container width */
+  height: auto;     /* Maintains aspect ratio */
+  display: block;   /* Removes inline spacing */
+  object-fit: cover; /* Optional: controls how image fills space */
+}
+
+
+.book-now-btn2 {
+  /* Positioning */
+  position: absolute;
+  bottom: 15%; /* Adjust vertically */
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* Scalable Sizing */
+  padding: 0.8em 2.5em; /* em scales with font-size */
+  font-size: 1.5vw; /* Responsive font */
+  border-radius: 100em; /* Ensures pill shape (100em = super rounded) */
+  aspect-ratio: 3.5/1; /* Optional: Keeps width/height ratio (e.g., 3.5x wider than tall) */
+
+  /* Styling */
+  background: black;
+  color: white;
+  border: none;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+/* Hover/Active States */
+.book-now-btn2:hover {
+  background: black;
+  transform: translateX(-50%) scale(1.05);
+}
+.book-now-btn2:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .book-now-btn2 {
+    font-size: 0.9rem; /* Slightly smaller text */
+    padding: 0.6em 1.8em; /* Tighter padding */
+  }
+}
+
+/* Button Row */
+.button-row {
+  position: absolute;
+  top: 53%;
+  right: 5%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 12%;
+  padding: 0 4%;
+  box-sizing: border-box;
+}
+.button-row2 {
+  position: absolute;
+  top: 92%;
+  right: 5%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 12%;
+  padding: 0 4%;
+  box-sizing: border-box;
+}
+
+/* Buttons */
+.book-now-btn3 {
+  background: transparent;
+  color: black;
+  border: 2px solid black;
+  padding: 0.8em 2.5em; /* em scales with font-size */
+  font-size: 1.6vw; /* Responsive font */
+  border-radius: 100em; /* Ensures pill shape (100em = super rounded) */
+  aspect-ratio: 3/1; /* Optional: Keeps width/height ratio (e.g., 3.5x wider than tall) */
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0; 
+  /* New fixes for vertical centering */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1; /* Reset default line-height */
+  text-align: center;
+  
+}
+
+/* Hover State - Subtle "float" effect */
+.book-now-btn3:hover {
+  transform: translateY(-3px) scale(1.02);
+  background-color: rgba(0, 0, 0, 0.531); /* Lightest possible overlay */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
+}
+
+/* Active State - "Pressed" effect */
+.book-now-btn3:active {
+  transform: translateY(1px) scale(0.98);
+  background-color: rgba(44, 43, 43, 0.632);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition-duration: 0.1s; /* Faster press animation */
+}
+
+.book-now-btn4 {
+  /* Positioning */
+  position: absolute;
+  bottom: 86%; /* Adjust vertically */
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* Scalable Sizing */
+  padding: 0.8em 2.5em; /* em scales with font-size */
+  font-size: 1.5vw; /* Responsive font */
+  border-radius: 100em; /* Ensures pill shape (100em = super rounded) */
+  aspect-ratio: 3.5/1; /* Optional: Keeps width/height ratio (e.g., 3.5x wider than tall) */
+
+  /* Styling */
+  background: black;
+  color: white;
+  border: none;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+.book-now-btn4:hover {
+  background: black;
+  transform: translateX(-50%) scale(1.05);
+}
+.book-now-btn4:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+.book-now-btn5 {
+  /* Positioning */
+  position: absolute;
+  bottom: 12%; /* Adjust vertically */
+  left: 14%;
+  transform: translateX(-50%);
+
+  /* Scalable Sizing */
+  padding: 0.8em 2.5em; /* em scales with font-size */
+  font-size: 1.5vw; /* Responsive font */
+  border-radius: 100em; /* Ensures pill shape (100em = super rounded) */
+  aspect-ratio: 3.5/1; /* Optional: Keeps width/height ratio (e.g., 3.5x wider than tall) */
+
+  /* Styling */
+  background: black;
+  color: white;
+  border: none;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+.book-now-btn5:hover {
+  background: black;
+  transform: translateX(-50%) scale(1.05);
+}
+.book-now-btn5:active {
+  transform: translateX(-50%) scale(0.98);
+}
+
+#readings-section {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+#about-section {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+#reviews-section {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+@media (max-width: 768px) {
+  .book-now-btn,
+  .book-now-btn2,
+  .book-now-btn3,
+  .book-now-btn4,
+  .book-now-btn5 {
+    font-size: 0.5rem; /* Smaller text on mobile */
+    padding: 0.6em 1.8em; /* Adjust padding */
+  }
+}
+#readings-section, #reviews-section, #about-section {
+  width: 100%;
+  height: auto;  /* Ensure each section is responsive */
+}
+
+#readings-section img, #reviews-section img, #about-section img {
+  width: 100%; /* Ensure images fill the section properly */
+  height: auto;
+}
+
+/* Reset section styles */
+section {
+  padding: 0;
+  margin: 0;
+  border: none;
+  width: 100%;
+  height: auto;
+  display: block;
 }
