@@ -1274,3 +1274,18 @@ section {
   height: auto;
   display: block;
 }
+
+.cta-text {
+  position: absolute;
+  top: 61%; /* Adjust the distance from the top */
+  left: 20%;
+  letter-spacing: 4%;
+  font-family: 'Urbanist';
+  transform: translateX(-50%); /* Centers the text horizontally */
+  font-size: clamp(1.5rem, 5vw, 3rem); /* Responsive font size */
+  color: white; /* Text color */
+  text-align: left;
+  font-weight: 50;
+  line-height: 1.7;
+  z-index: 10; /* Ensures the text is above the image */
+}

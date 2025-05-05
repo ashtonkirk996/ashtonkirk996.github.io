@@ -50,7 +50,11 @@ ctaImage.className= "cta-image";
 ctaImage.innerHTML =  `
   <div class="cta-image-container">
    <button class="book-now-btn">BOOK NOW</button>
+       <div class="cta-text">Are you at crossroads and want to know what<br>
+        each path holds so you can make a wise<br>
+         decision that’s in alignment with your goals?</div>
     <img src="/images/header.png" alt="cta image" class="cta-image-image">
+
    
   </div>
   <img src="/images/cta.png" alt="cta image" class="cta-image-image">
